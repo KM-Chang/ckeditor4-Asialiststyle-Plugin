@@ -89,7 +89,14 @@
 				[ lang.upperRoman, 'upper-roman' ],
 				[ lang.lowerAlpha, 'lower-alpha' ],
 				[ lang.upperAlpha, 'upper-alpha' ],
-				[ lang.decimal, 'decimal' ]
+				[ lang.decimal, 'decimal' ],
+				[ lang.cjkideographic, 'cjk-ideographic' ],
+				[ lang.cjkheavenlystem, 'cjk-heavenly-stem' ],
+				[ lang.cjkearthlybranch, 'cjk-earthly-branch' ],
+				[ lang.hiragana, 'hiragana' ],
+				[ lang.hiraganairoha, 'hiragana-iroha' ],
+				[ lang.katakana, 'katakana' ],
+				[ lang.katakanairoha, 'katakana-iroha' ]
 			];
 
 			return {
@@ -154,6 +161,46 @@
 									element.removeStyle( 'list-style-type' );
 							}
 						} ]
+					},
+					{
+						type: 'hbox',
+						widths: ['50%', '50%'],
+						children: [{
+							label: 'color',
+							type: 'text',
+							id: 'color',
+							setup: function (element) {
+								var value = element.getStyle('color') || mapListStyle[element.getAttribute('color')] || element.getAttribute('color') || '';
+
+								this.setValue(value);
+							},
+							commit: function (element) {
+								var value = this.getValue();
+								if (value)
+									element.setStyle('color', value);
+								else
+									element.removeStyle('color');
+							}
+						},
+						{
+							type: 'select',
+							label: lang.type,
+							id: 'type',
+							style: 'width: 100%;',
+							items: listStyleOptions,
+							setup: function (element) {
+								var value = element.getStyle('list-style-type') || mapListStyle[element.getAttribute('type')] || element.getAttribute('type') || '';
+
+								this.setValue(value);
+							},
+							commit: function (element) {
+								var value = this.getValue();
+								if (value)
+									element.setStyle('list-style-type', value);
+								else
+									element.removeStyle('list-style-type');
+							}
+						}]
 					} ]
 				} ],
 				onShow: function() {

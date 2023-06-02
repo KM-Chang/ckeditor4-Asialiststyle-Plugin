@@ -1,0 +1,25 @@
+/*中文編號括弧*/
+ol[style="list-style-type:cjk-MyItemKT1;"], ol[style="list-style-type:cjk-MyItemKT2;"] {
+	counter-reset: MyCreatType;
+}
+	ol[style="list-style-type:cjk-MyItemKT1;"] > li, ol[style="list-style-type:cjk-MyItemKT2;"] > li {
+		list-style: none;
+	}
+		ol[style="list-style-type:cjk-MyItemKT1;"] > li::before {
+			counter-increment: MyCreatType;
+			content: "(" counter(MyCreatType,cjk-ideographic) ")"; /* Insert content that looks like bullets */
+			left: 20px;
+			color: black; /* Or a color you prefer */
+			background: white;
+			position: absolute;
+			display: block;
+		}
+		ol[style="list-style-type:cjk-MyItemKT2;"] > li::before {
+			counter-increment: MyCreatType;
+			content: "(" counter(MyCreatType,decimal) ")"; /* Insert content that looks like bullets */
+			left: 20px;
+			color: black; /* Or a color you prefer */
+			background: white;
+			position: absolute;
+			display: block;
+		}
